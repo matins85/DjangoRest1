@@ -6,7 +6,7 @@ from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, \
 
 class UserManager(BaseUserManager):
 
-    def create_user(self,email, password=None, **extra_fields):
+    def create_user(self, email, password=None, **extra_fields):
         """Create and saves a new user"""
         user = self.model(email=self.normalize_email(email), **extra_fields)
         user.set_password(password)
@@ -23,7 +23,7 @@ class UserManager(BaseUserManager):
         return user
 
 
-class user(AbstractBaseUser, PermissionsMixin):
+class User(AbstractBaseUser, PermissionsMixin):
     """Create user model thats support using email insttead of username"""
     email = models.EmailField(max_length=255, unique=True)
     name = models.CharField(max_length=255)
